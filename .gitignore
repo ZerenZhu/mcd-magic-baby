@@ -1,0 +1,21 @@
+# 本机私密文件 —— 绝不提交 GitHub，也绝不能被打包
+.env
+.env.*
+# 模板文件必须提交，否则参赛项目会缺文件（注意：gitignore 不支持行内注释，必须独占一行）
+!.env.example
+
+# 运行时数据（默认在 ~/.workbuddy/mcd-magic-baby/，此处防止有人把数据放回 skill 目录）
+data/
+*.json.bak
+麦门账单_*.md
+order_cache.json
+fortune_cache.json
+box_history.json
+auto_order_log.json
+reports/
+
+# 常规忽略
+__pycache__/
+*.pyc
+*.zip
+.DS_Store
