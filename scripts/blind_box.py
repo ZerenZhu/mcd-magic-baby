@@ -19,7 +19,7 @@
 
 玩法:
     python3 blind_box.py                     # 今日一抽（日期为种子，同一天结果一致）
-    python3 blind_box.py --mode 放纵         # 省着吃 / 正常 / 放纵 / 减脂
+    python3 blind_box.py --mode 犒劳         # 省着吃 / 正常 / 犒劳 / 减脂
     python3 blind_box.py --seed 1024         # 换种子 = 换一抽
     python3 blind_box.py --ten               # 十连抽（保底至少一张 SR 以上）
     python3 blind_box.py --collection        # 查看我的图鉴与保底进度
@@ -43,7 +43,7 @@ import fortune  # noqa: E402
 MODES = {
     "省着吃": {"groups": ["主食", "饮料"], "kcap": 700, "words": "省钱又顶饱"},
     "正常":   {"groups": ["主食", "小食", "饮料"], "kcap": 900, "words": "标准操作，稳"},
-    "放纵":   {"groups": ["主食", "小食", "饮料", "甜品"], "kcap": 1600, "words": "今天不算热量"},
+    "犒劳":   {"groups": ["主食", "小食", "饮料", "甜品"], "kcap": 1600, "words": "今天犒劳一下自己"},
     "减脂":   {"groups": ["主食", "饮料"], "kcap": 450, "words": "管住嘴，明天称上见"},
 }
 # 分类别名：不同门店返回的分类名不同（真实门店见过：鸡肉汉堡/卷、小食甜品/其他、麦咖啡™、饮品）
@@ -289,7 +289,22 @@ def main():
     rng = random.Random(seed)
     cfg = MODES[mode]
 
-    raw_menu = call_tool("query-meals", common.store_args(opts.store, opts.be))
+    try:
+        raw_menu = call_tool("query-meals", common.store_args(opts.store, opts.be))
+    except RuntimeError as e:
+        # 门店打烊 / 参数不对是最常见的两类失败，给人话而不是堆栈
+        msg = common.redact(str(e))
+        if "营业" in msg or "关闭" in msg:
+            print(json.dumps({
+                "错误": "默认门店当前不在营业时间",
+                "怎么办": ["换一家 24 小时门店：--store <storeCode>",
+                        "或等营业时段再开（麦当劳早餐通常 05:00 起）",
+                        "不确定门店编码就先跑 python3 doctor.py 看默认门店"]},
+                ensure_ascii=False, indent=2))
+        else:
+            print(json.dumps({"错误": msg, "怎么办": "检查 Token 与门店参数：python3 doctor.py"},
+                             ensure_ascii=False, indent=2))
+        sys.exit(1)
     menu = common.parse_menu(raw_menu)          # 统一成 [{分类, 名称, 价格(元), ...}]
     try:
         nut_list = common.parse_nutrition(call_tool("list-nutrition-foods", {}))

@@ -54,7 +54,7 @@ python3 scripts/fortune.py --refresh    # 忽略当日缓存重算
 
 ```bash
 python3 scripts/blind_box.py                    # 今日一抽（同一天结果一致）
-python3 scripts/blind_box.py --mode 放纵        # 省着吃 / 正常 / 放纵 / 减脂
+python3 scripts/blind_box.py --mode 犒劳        # 省着吃 / 正常 / 犒劳 / 减脂
 python3 scripts/blind_box.py --ten              # 十连抽（保底一张 SR+）
 python3 scripts/blind_box.py --seed 1024        # 换种子 = 换一抽
 python3 scripts/blind_box.py --collection       # 我的图鉴 + 保底进度

@@ -103,7 +103,7 @@
 python3 scripts/fortune.py                       # 🔮 麦麦运势（麦门指数/幸运单品/宜忌/吉时）
 python3 scripts/fortune.py --refresh             # 忽略当日缓存重算
 python3 scripts/blind_box.py                     # 🎁 今日一抽（运势决定手气倍率）
-python3 scripts/blind_box.py --mode 放纵         # 省着吃/正常/放纵/减脂
+python3 scripts/blind_box.py --mode 犒劳         # 省着吃/正常/犒劳/减脂
 python3 scripts/blind_box.py --ten               # 十连抽（保底 SR+）
 python3 scripts/blind_box.py --seed 1024         # 换种子 = 换一抽
 python3 scripts/blind_box.py --collection        # 稀有度图鉴与保底进度
