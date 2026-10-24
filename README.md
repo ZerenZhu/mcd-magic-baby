@@ -2,6 +2,8 @@
 
 > 今天吃什么？先算一卦，再开个盲盒。
 > **「麦麦启动」** 是它的开机口令 —— 输入这四个字，直接开今日麦麦运势。
+>
+> GitHub：https://github.com/ZerenZhu/mcd-magic-baby（觉得有意思的话，欢迎点个 ⭐，本次比赛排名以 Star 数为依据）
 
 一个基于**麦当劳中国官方 MCP** 的点餐 Skill。玄学是壳子，数据是真的：运势不是随机数，而是用你的**真实可用券、活动、积分、时段与历史订单**算出来的；盲盒的每一只「宝贝」都是**真实门店菜单里的餐品**，带真实价格与热量。
 
@@ -73,7 +75,7 @@
 
 ```bash
 # 1. 放到 WorkBuddy 的用户级技能目录（也可用本项目自带的 zip 解压）
-git clone <你的仓库地址> ~/.workbuddy/skills/mcd-magic-baby
+git clone https://github.com/ZerenZhu/mcd-magic-baby.git ~/.workbuddy/skills/mcd-magic-baby
 
 # 2. 配 Token（写入 ~/.workbuddy/mcd-magic-baby/.env，权限 600）
 cd ~/.workbuddy/skills/mcd-magic-baby
@@ -233,7 +235,7 @@ mcd-magic-baby/
 ```text
 【参赛申请】
 项目名称：神奇麦麦宝贝
-项目地址：<你的 GitHub 仓库地址>
+项目地址：https://github.com/ZerenZhu/mcd-magic-baby
 项目简介：输入「麦麦启动」，用麦当劳官方 MCP 的真实券/活动/积分算今日麦麦运势，再开 SSR 盲盒让命运决定吃什么
 ```
 
